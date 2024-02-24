@@ -1,0 +1,68 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 60vh;">
+  <div style="background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 300px;">
+    <%= form_with(model: @train, local: true) do |form| %>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :number %>
+        <%= form.text_field :number, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :departure_station %>
+        <%= form.text_field :departure_station, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :termination_station %>
+        <%= form.text_field :termination_station, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :departure_date %>
+        <%= form.date_field :departure_date, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :departure_time %>
+        <%= form.time_field :departure_time, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :arrival_date %>
+        <%= form.date_field :arrival_date, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :arrival_time %>
+        <%= form.time_field :arrival_time, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :ticket_price %>
+        <%= form.text_field :ticket_price, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :train_capacity %>
+        <%= form.number_field :train_capacity, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :seats_left %>
+        <%= form.number_field :seats_left, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Create", class: "btn btn-primary", style: "width: 100%;" %>
+      </div>
+        <% if @train.errors.any? %>
+            <div id="error_explanation" style="color: red;text-align:center;">
+                <% @train.errors.full_messages.each do |message| %>
+                    <div style="color: red;"><%= message %></div>
+                <% end %>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+

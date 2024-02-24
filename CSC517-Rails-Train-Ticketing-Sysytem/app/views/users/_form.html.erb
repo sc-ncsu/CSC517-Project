@@ -1,0 +1,52 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 60vh;">
+  <div style="background-color: #f0f0f0; padding: 50px; border: 1px solid #ccc; border-radius: 5px; width: 300px;">
+    <%= form_with(model: user, local: true) do |form| %>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :email_address %>
+        <%= form.text_field :email_address, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :address %>
+        <%= form.text_area :address, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :phone_number %>
+        <%= form.text_field :phone_number, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="field" style="margin-bottom: 10px;">
+        <%= form.label :credit_number %>
+        <%= form.text_field :credit_number, class: "form-control", style: "width: 100%;" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Register", class: "btn btn-primary", style: "width: 100%;" %>
+      </div>
+    <% end %>
+     <% if user.errors.any? %>
+            <div id="error_explanation" style="color: red;text-align:center;">
+                <% user.errors.full_messages.each do |message| %>
+                    <div style="color: red;"><%= message %></div>
+                <% end %>
+            </div>
+        <% end %>
+  </div>
+</div>

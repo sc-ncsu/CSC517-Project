@@ -1,0 +1,31 @@
+<style>
+    .error-message {
+      color: red;
+      margin-bottom: 10px;
+    }
+</style>
+<h1 style="text-align: center;">Login</h1>
+
+
+<div style="text-align: center; margin-top: 50px; ">
+  <%= form_tag sessions_path, style: "display: inline-block; text-align: left; padding: 20px; border: 1px solid #ccc; border-radius: 5px;background-color: #f0f0f0;" do |form| %>
+    <div class="field" style="margin-bottom: 10px;">
+      <%= label_tag :email_address %>
+      <%= text_field_tag :email_address, nil, class: "form-control", style: "width: 100%;" %>
+    </div>
+
+    <div class="field" style="margin-bottom: 10px;">
+      <%= label_tag :password %>
+      <%= password_field_tag :password, nil, class: "form-control", style: "width: 100%;" %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag "Login", class: "btn btn-primary", style: "width: 100%;" %>
+    </div>
+  <% end %>
+      <% if flash[:error] %>
+          <div class="error-message" style="color: red; margin-bottom: 10px;">
+            <%= flash[:error] %>
+          </div>
+    <% end %>
+</div>

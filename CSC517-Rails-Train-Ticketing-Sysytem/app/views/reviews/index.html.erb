@@ -1,0 +1,36 @@
+<h1 style="text-align:center">All Reviews</h1>
+
+<div style="text-align:center">
+    <%= form_tag search_reviews_path, method: :get do %>
+        <%= label_tag 'User' %>
+        <%= text_field_tag :user_q, params[:user_q], placeholder: 'Search by user' %>
+
+        <%= label_tag 'Train' %>
+        <%= text_field_tag :train_q, params[:train_q], placeholder: 'Search by train' %>
+
+    <%= submit_tag 'Search' %>
+        <button><%= link_to 'Clear Search', reviews_path, class: 'clear-search', style: 'margin-left: 5px; color: black;' %></button>
+    <% end %>
+</div>
+
+<table class="table" style="border:1px solid black;text-align:center;margin: 0 auto;background-color:grey;padding:20px;">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Train</th>
+      <th>Rating</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.user.name %></td>
+        <td><%= review.train.number %></td>
+        <td><%= review.rating %></td>
+        <td><%= review.feedback %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

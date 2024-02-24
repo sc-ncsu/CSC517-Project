@@ -1,0 +1,43 @@
+  <% if flash[:deleted].present? %>
+    <script>
+      alert("<%= flash[:deleted] %>");
+    </script>
+  <% elsif flash[:error].present? %>
+    <script>
+      alert("<%= flash[:error] %>");
+    </script>
+  <% end %>
+
+<h1 style="text-align:center">Users</h1>
+
+<table class="table" style="border:1px solid black;text-align:center;margin: 0 auto;background-color:grey;padding:20px;">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email address</th>
+      <th>Address</th>
+      <th>Phone number</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email_address %></td>
+          <td><%= user.address %></td>
+          <td><%= user.phone_number %></td>
+          <td>
+            <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-info' %>
+          </td>
+          <td>
+              <% unless user && user.admin? %>
+                <%= link_to 'Delete', user, data: { turbo_method: :delete } , class: 'btn btn-danger' %>
+              <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

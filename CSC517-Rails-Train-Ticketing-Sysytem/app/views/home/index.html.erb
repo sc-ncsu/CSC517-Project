@@ -1,0 +1,66 @@
+<% if current_user %>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 900px; margin: 0 auto;">
+  <a href="<%= trains_path %>" style="flex-basis: calc(33.33% - 50px); margin-bottom: 20px; text-decoration: none;">
+    <div class="grid-box" style="background-color: #f0f0f0; padding: 50px; text-align: center; cursor: pointer; color: black;">
+      View All Trains
+    </div>
+  </a>
+  <% unless current_user && current_user.admin? %>
+      <a href="<%= highly_rated_trains_path %>" style="flex-basis: calc(33.33% - 50px); margin-bottom: 20px; text-decoration: none;">
+        <div class="grid-box" style="background-color: #f0f0f0; padding: 50px; text-align: center; cursor: pointer; color: black;">
+          Highly Rated Trains
+        </div>
+      </a>
+  <% end %>
+    <a href="<%= bookings_path %>" style="flex-basis: calc(33.33% - 50px); margin-bottom: 20px; text-decoration: none;">
+      <div class="grid-box" style="background-color: #f0f0f0; padding: 50px; text-align: center; cursor: pointer; color: black;">
+        View Bookings
+      </div>
+    </a>
+  <% if current_user && current_user.admin? %>
+    <a href="<%= users_path %>" style="flex-basis: calc(33.33% - 50px); margin-bottom: 20px; text-decoration: none;">
+      <div class="grid-box" style="background-color: #f0f0f0; padding: 50px; text-align: center; cursor: pointer; color: black;">
+        View All Users
+      </div>
+    </a>
+  <% end %>
+      <a href="<%= reviews_path %>" style="flex-basis: calc(33.33% - 50px); margin-bottom: 20px; text-decoration: none;">
+      <div class="grid-box" style="background-color: #f0f0f0; padding: 50px; text-align: center; cursor: pointer; color: black;">
+        View All Reviews
+      </div>
+    </a>
+  <% if current_user && current_user.admin? %>
+    <a href="<%= new_train_path %>" style="flex-basis: calc(33.33% - 50px); margin-bottom: 20px; text-decoration: none;">
+      <div class="grid-box" style="background-color: #f0f0f0; padding: 50px; text-align: center; cursor: pointer; color: black;">
+        Create Train
+      </div>
+    </a>
+  <% end %>
+  <% if current_user && current_user.admin? %>
+    <a href="<%= new_user_path %>" style="flex-basis: calc(33.33% - 50px); margin-bottom: 20px; text-decoration: none;">
+      <div class="grid-box" style="background-color: #f0f0f0; padding: 50px; text-align: center; cursor: pointer; color: black;">
+        Create User
+      </div>
+    </a>
+  <% end %>
+</div>
+
+<% else %>
+      <p id=”notice”><%= notice %></p>
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 70vh;">
+        <h2 style="text-align:center;">
+          Welcome to the Train Booking System !
+        </h3>
+        <h4 style="text-align:center;">
+          <%= link_to 'Login as a Passenger', login_path, style: 'color: black;' %>
+        </h4>
+        <h4 style="text-align:center;">
+          <%= link_to 'Sign Up as a Passenger', signup_path, style: 'color: black;' %>
+        </h4>
+        <h4 style="text-align:center;">
+          <%= link_to 'Login here if you are an Admin', login_path, style: 'color: black;' %>
+        </h4>
+      </div>
+</div>
+<% end %>

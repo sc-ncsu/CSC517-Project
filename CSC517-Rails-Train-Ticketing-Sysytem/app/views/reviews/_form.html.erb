@@ -1,0 +1,16 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 20vh;">
+  <div style="background-color: #f0f0f0; padding: 20px; border: 1px solid #ccc; border-radius: 5px; width: 300px;">
+    <%= form_for([@train, @review], html: { style: 'display: inline-block;' }) do |f| %>
+        <%= f.label :rating %>
+        <%= f.number_field :rating, in: 1..5 %>
+        <%= f.label :feedback %>
+        <%= f.text_area :feedback %>
+
+      <% if @review.persisted? %>
+        <%= f.submit 'Update Review', data: { turbo_method: :put }  %>
+      <% else %>
+        <%= f.submit 'Create Review', method: :post %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

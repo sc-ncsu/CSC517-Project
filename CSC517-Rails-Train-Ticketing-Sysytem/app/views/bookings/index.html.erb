@@ -1,0 +1,47 @@
+<% if current_user.admin? %>
+<h1 style="text-align:center">All Bookings</h1>
+<%else%>
+<h1 style="text-align:center">Your Bookings</h1>
+<% end %>
+
+
+<div style="text-align:center">
+<%= form_tag search_bookings_path, method: :get, id: 'search-form' do %>
+
+    <%= label_tag 'Train' %>
+    <%= text_field_tag :train_q, params[:train_q], placeholder: 'Search by train' %>
+<%= submit_tag 'Search' %>
+    <button><%= link_to 'Clear Search', bookings_path, class: 'clear-search', style: 'margin-left: 5px; color: black;' %></button>
+<% end %>
+</div>
+
+<table style="border:1px solid black;text-align:center;margin: 0 auto;background-color:grey;padding:20px;">
+<thead>
+<tr>
+  <% if current_user.admin? %>
+    <th>User</th>
+  <%end%>
+  <th>Booking Code</th>
+  <th>Train Number</th>
+  <th>Source Station</th>
+  <th>Destination Station</th>
+  <th>Ticket Price</th>
+  <th>Booking Date</th>
+</tr>
+</thead>
+<tbody>
+<% @bookings.each do |booking| %>
+  <tr>
+    <% if current_user.admin? %>
+      <td><%= booking.user.name %></td>
+    <%end%>
+    <td><%= booking.booking_code %></td>
+    <td><%= booking.train.number %></td>
+    <td><%= booking.train.departure_station %></td>
+    <td><%= booking.train.termination_station %></td>
+    <td><%= number_to_currency(booking.train.ticket_price) %></td>
+    <td><%= booking.created_at %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
